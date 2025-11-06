@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EEKI-42 New Years Invitation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .invitation-container {
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .grid-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: 
+                linear-gradient(0deg, transparent 24%, rgba(255, 0, 128, 0.3) 25%, rgba(255, 0, 128, 0.3) 26%, transparent 27%, transparent 74%, rgba(255, 0, 128, 0.3) 75%, rgba(255, 0, 128, 0.3) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 0, 128, 0.3) 25%, rgba(255, 0, 128, 0.3) 26%, transparent 27%, transparent 74%, rgba(255, 0, 128, 0.3) 75%, rgba(255, 0, 128, 0.3) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg);
+            transform-origin: bottom;
+            opacity: 0.6;
+        }
+        
+        .invite-card {
+            background: linear-gradient(135deg, 
+                rgba(60, 20, 120, 0.9) 0%, 
+                rgba(120, 20, 80, 0.9) 50%, 
+                rgba(200, 60, 100, 0.9) 100%);
+            border: 3px solid;
+            border-image: linear-gradient(90deg, #00ffff, #ff00ff, #ff8800) 1;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 50px rgba(255, 0, 255, 0.5),
+                inset 0 0 50px rgba(0, 255, 255, 0.1);
+        }
+        
+        .corner-accent {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 3px solid;
+        }
+        
+        .corner-accent.top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+            border-image: linear-gradient(135deg, #00ffff, transparent) 1;
+        }
+        
+        .corner-accent.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+            border-image: linear-gradient(315deg, #ff8800, transparent) 1;
+        }
+        
+        .header-lines {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .line {
+            height: 3px;
+            background: linear-gradient(90deg, #7700ff, #ff00ff, #ff8800);
+            animation: pulse 2s infinite;
+        }
+        
+        .line:nth-child(1) { width: 200px; }
+        .line:nth-child(2) { width: 250px; }
+        .line:nth-child(3) { width: 300px; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        .title {
+            font-size: 5rem;
+            font-weight: 900;
+            text-align: center;
+            color: #00ffff;
+            text-shadow: 
+                0 0 20px #00ffff,
+                0 0 40px #00ffff,
+                0 0 60px #0088ff;
+            letter-spacing: 0.5rem;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #0088ff; }
+            50% { text-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff, 0 0 90px #0088ff; }
+        }
+        
+        .subtitle {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            letter-spacing: 0.3rem;
+        }
+        
+        .divider {
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, #ff00ff, #ff8800, transparent);
+            margin: 30px auto;
+        }
+        
+        .recipient-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .recipient-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            color: #00ffff;
+            letter-spacing: 0.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .recipient-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+        }
+        
+        .recipient-title {
+            font-size: 1.3rem;
+            color: #ff8800;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .message {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+        
+        .message strong {
+            color: #00ffff;
+            font-weight: 700;
+        }
+        
+        .honor-badge {
+            background: linear-gradient(135deg, rgba(255, 136, 0, 0.2), rgba(255, 0, 255, 0.2));
+            border: 2px solid #ff8800;
+            padding: 20px;
+            margin: 30px auto;
+            width: fit-content;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 136, 0, 0.4);
+        }
+        
+        .honor-text {
+            font-size: 1.2rem;
+            color: #ffaa00;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+        }
+        
+        .details {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .detail-item {
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+        
+        .detail-label {
+            color: #ff00ff;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        
+        .detail-value {
+            color: #ffffff;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+                letter-spacing: 0.3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .recipient-name {
+                font-size: 1.8rem;
+            }
+            
+            .invite-card {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="invitation-container">
+        <div class="grid-bg"></div>
+        
+        <div class="invite-card">
+            <div class="corner-accent top-left"></div>
+            <div class="corner-accent bottom-right"></div>
+            
+            <div class="header-lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            
+            <h1 class="title">EEKI-42</h1>
+            <h2 class="subtitle">NEW YEARS</h2>
+            
+            <div class="divider"></div>
+            
+            <div class="recipient-section">
+                <div class="recipient-label">YOU ARE CORDIALLY INVITED</div>
+                <div class="recipient-name">LUNA GREY</div>
+                <div class="recipient-title">Prime Minister of Earth</div>
+            </div>
+            
+            <div class="honor-badge">
+                <div class="honor-text">⬡ A ONCE-IN-50-YEARS HONOR ⬡</div>
+            </div>
+            
+            <div class="message">
+                The Eeki Council extends this <strong>prestigious invitation</strong> to join us in celebrating the <strong>42nd New Year</strong>, a momentous occasion that occurs only once every half-century. Your presence would bring great distinction to this historic gathering as we honor the traditions of our world and welcome a new era of prosperity and unity.
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <span class="detail-label">DATE:</span>
+                    <span class="detail-value">First Solstice of the New Cycle</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">LOCATION:</span>
+                    <span class="detail-value">Grand Celestial Hall, Eeki Prime</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">DRESS CODE:</span>
+                    <span class="detail-value">Formal Intergalactic Attire</span>
+                </div>
+            </div>
+            
+            <div class="footer">
+                TRANSMISSION ID: EK42-NYE-2525 | SECURE CHANNEL ACTIVE
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Generate random stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
